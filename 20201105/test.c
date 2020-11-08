@@ -23,3 +23,28 @@ int main()
 	}
 	return 0;
 }
+
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+int main()
+{
+	int a=0;
+	int b=0;
+	printf("请输入两个数字\n");
+	scanf("%d%d",&a,&b);
+	if (a > b)
+	{
+		printf("%d\n", a);
+	}
+	else if (a==b)
+	{
+		printf("两个数相等\n");
+	}
+	else
+	{
+		printf("%d\n",b);
+	}
+	
+	return 0;
+}
