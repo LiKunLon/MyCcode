@@ -677,3 +677,218 @@ int main()
 	chart(n);
 	return 0;
 }
+
+
+
+在一个整形有序数组中查找具体的某个数:找到了就打印数字所在的下标，找不到则输出：找不到
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	int len = sizeof(arr) / sizeof(arr[0]);
+	int key = 8;
+	int mid = 0;
+	int left = 0;
+	int right = len - 1;
+	while (left <= right)
+	{
+		mid = (left + right) / 2;
+		if (arr[mid] < key)
+		{
+			left = mid + 1;
+		}
+		else if (arr[mid]>key)
+		{
+			right = mid - 1;
+		}
+		else
+		{
+			break;
+		}
+	}
+	//两种情况退出①:符合循环条件,break退出(找到了)②:不符合循环条件(left>right)找不到
+	if (left <= right)
+	{
+		printf("找到了,该数字下标是:%d\n", mid);
+	}
+	else
+	{
+		printf("没找到!\n");
+	}
+	return 0;
+}
+
+函数实现二分查找
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int Find(int arr[], int key, int len)
+{
+	int mid = 0;
+	int left = 0;
+	int right = len - 1;
+	while (left <= right)
+	{
+		mid = (left + right)/2;
+		if (arr[mid] < key)
+		{
+			left = mid + 1;
+		}
+		else if (arr[mid]>key)
+		{
+			right = mid + 1;
+		}
+		else
+		{
+			return mid;
+		}
+	}
+	return -1;
+}
+int main()
+{
+	int arr[] = {1,2,3,4,5,6,7,8,9};
+	int len = sizeof(arr) / sizeof(arr[0]);
+	int ret = Find(arr,8, len);
+	if (ret == -1)
+	{
+		printf("没有这个数字!\n");
+	}
+	else
+	{
+		printf("找到了,这个数字的下标是:%d\n", ret);
+	}
+	return 0;
+}
+
+
+
+递归方式实现打印一个整数的每一位
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+void print(int n)
+{
+	if (n > 9)
+	{
+		print(n / 10);
+	}
+	printf("%d ", n % 10);
+
+}
+int main()
+{
+	int num = 0;
+	printf("请输入一个数字:\n");
+	scanf("%d", &num);
+	print(num);
+	return 0;
+}
+
+递归实现n的阶乘
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int fac(int n)
+{
+	if (n == 1)
+	{
+		return 1;
+	}
+	return n*fac(n - 1);
+}
+
+
+int main()
+{
+	int num = 0;
+	printf("请输入所求阶乘:\n");
+	scanf("%d",&num);
+	printf("%d", fac(num));
+	return 0;
+}
+
+
+
+非递归实现阶乘
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int  fac(int n)
+{
+	int ret = 1;
+	for (int i = 1; i <= n; i++)
+	{
+		ret *= i;
+	}
+	return ret;
+}
+
+
+int main()
+{
+	int num = 0;
+	printf("请输入所求阶乘数:\n");
+	scanf("%d", &num);
+	int a = fac(num);
+	printf("%d\n", a);
+	return 0;
+}
+
+
+递归实现strlen
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int length(char *str)
+{
+	if (*str == '\0')
+	{
+		return 0;
+	}	
+	return 1 + length(str + 1);
+}
+int main()
+{
+	char * p= "abcde";
+	printf("%d\n", length(p));
+	return 0;
+}
+
+
+非递归实现strlen
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char *str = "abcde";
+	int tmp = strlen(str);
+	printf("%d\n", tmp);
+	return 0;
+}
+
+
+/*编写一个函数 reverse_string(char * string)（递归实现）
+实现：将参数字符串中的字符反向排列。
+要求：不能使用C函数库中的字符串操作函数。*/
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<windows.h>
+void reverse_string(char *p)
+{
+	int len = strlen(p);
+	char tmp = *p;
+	*p = *(p + len - 1);
+	*(p + len - 1) = '\0';
+	if (strlen(p + 1) > 1)
+	{
+		reverse_string(p + 1);
+	}
+	*(p + len - 1) = tmp;
+}
+int main()
+{
+	char str[] = "abcdef";
+	printf("%s\n", str);
+	reverse_string(str);
+	printf("%s\n", str);
+	return 0;
+}
