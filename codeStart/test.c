@@ -249,3 +249,431 @@ int main()
 	printf("%d\n", sum);
 	return 0;
 }
+
+
+1-100打印3的倍数
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int main()
+{
+
+	for (int i = 1; i <= 100; i++)
+	{
+		if (i % 3 == 0)//一个数除以3没有余数就是3的倍数
+			printf("%d\n", i);
+	}
+	return 0;
+}
+
+
+指针大小
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+int main()
+{
+	printf("%d\n", sizeof(char*));
+	printf("%d\n", sizeof(short*));
+	printf("%d\n", sizeof(int*));
+	printf("%d\n", sizeof(long*));
+	return 0;
+
+}
+
+结构体	
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+struct stu
+{
+	char name[30];
+	int age;
+	char sex[3];
+};
+
+int main()
+{
+	struct stu s1 = { "一", 10, 'n' };
+	struct stu s2 = { "二", 120, 'v' };
+	printf("%s %d %s\n", s1.name, s1.age, s1.sex);//.也有访问功能
+	struct stu *p = &s2;
+	printf("%s %d %s\n", (*p).name, (*p).age, (*p).sex);//.的优先级高于指针
+	printf("%s %d %s\n", p->name, p->age, p->sex);//指向符自带解引用功能
+	return 0;
+}
+
+
+三目运算符
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+int main()
+{
+	int a = 1;
+	int b = 0;
+	int c = 1;
+	int d = a ? (b == 1 ? c : a) : c;
+	printf("%d\n", d);
+	return 0;
+}
+
+
+
+计算n的阶乘
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int main()
+{
+	int n;
+	int ret = 1;
+	scanf("%d", &n);
+	for (int i = 1; i <= n; i++)
+	{
+		ret *= i;
+	}
+	printf("%d\n", ret);
+	return 0;
+}
+
+计算1!+2!+3!+...+10!
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int main()
+{
+	int i = 1;
+	int ret = 1;
+	int sum = 0;
+	for (int n = 1; n <= 10; n++)
+	{
+		for (int i = 1; i <= n; i++)
+		{
+			ret = ret*i;
+		}
+		sum = sum + ret;
+		ret = 1;
+	}
+	printf("%d\n", sum);
+	return 0;
+		
+}
+
+最大公约数(辗转相除法)
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int main()
+{
+	int a, b,c;
+	printf("请输入两个待比较数:\n");
+	scanf("%d %d", &a, &b);
+	while (b != 0)
+	{
+		c = a % b;
+		a = b;
+		b = c;
+	}
+	printf("%d\n", a);
+	return 0;
+}
+
+二分查找	
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+int main()
+{
+	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	int key = 8;
+	int len = sizeof(arr) / sizeof(arr[0]);//求数组长度
+	int left = 0;//0是下标
+	int right = len - 1;//代表最后一个元素
+	int mid = 0;
+	while (left <= right)
+	{
+		mid = (left + right) / 2;
+		if (arr[mid] > key)//如果中间元素大于所找数字
+		{
+			right = mid - 1;//mid之前一个元素就是新的right
+		}
+		else if (arr[mid] < key)//如果中间元素小于所找数字
+		{
+			left = mid + 1;//mid之后一个元素就是新的left
+		}
+		else
+		{
+			break;
+		}
+		//两种情况退出:1.因为break退出 2.因为循环条件不满足退出(left>right)
+	}
+	if (left <= right)//如果因为break退出,就是找到了
+	{
+		printf("找到了,下标是:%d\n", mid);
+	}
+	else
+	{
+		printf("找不到");
+	}
+	return 0;
+}
+
+编写代码，演示多个字符从两端移动，向中间汇聚
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<string.h>
+#include<windows.h>
+int main()
+{
+	char arr1[] = "******************";
+	char arr2[] = "LiLan is my honey!";
+	int left = 0;
+	int right = strlen(arr1) - 1;
+	printf("%s\n", arr2);
+	while (left <= right)
+	{
+		Sleep(1000);
+		arr1[left] = arr2[left];
+		arr1[right] = arr2[right];
+		left++;
+		right--;
+		printf("%s\n", arr1);
+	}
+	return 0;
+}
+
+模拟用户登录场景
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char passward[20] = { 0 };
+	int i = 0;
+	for (i = 1; i <= 3; i++)
+	{
+		printf("请输入密码:");
+		scanf("%s", passward);
+		if (strcmp(passward, "1234") == 0)
+			printf("登陆成功!\n");
+		else
+		{
+			printf("密码有误,你还有%d次机会\n",3-i);
+		}
+	}
+	return 0;
+}
+
+
+最大公约数(常规法)
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int main()
+{
+	int a, b;
+	int i = 0;
+	printf("请输入两个数:\n");
+	scanf("%d%d", &a, &b);
+	for ( i = a; i <= a; i--)
+	{
+		if (a % i == 0 && b % i == 0)
+			break;
+	}
+	printf("%d\n", i);
+	return 0;
+}
+
+判断一个数是否是素数(常规法)
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int main()
+{
+	int a;
+	int i = 0;
+	printf("请输入一个整数:\n");
+	scanf("%d", &a);
+	for ( i = 2; i < a; i++)
+	{
+		if (a%i == 0)//如果可以除尽,则不是素数
+			break;
+	}
+	//两种情况退出:①因为break②不满足循环条件i<=a
+	if (i <a)//满足循环条件,因为break退出.
+	{
+		printf("不是素数\n");
+	}
+	else
+	{
+		printf("是素数\n");
+	}
+	return 0;
+}
+
+//写一函数判断一个数是否是素数(n/2法)
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int isPrime(int n)
+{
+	int i = 0;
+	for (i = 2; i <= (n/2); i++)
+	{
+		if (n%i == 0)
+			return 1;
+	}
+	return 0;
+}
+
+int main()
+{
+	int num = 0;
+	printf("请输入一个整数:\n");
+	scanf("%d", &num);
+	int ret = isPrime(num);
+	if (ret == 1)
+	{
+		printf("%d不是素数\n", num);
+	}
+	else
+	{
+		printf("%d是素数", num);
+	}
+	return 0;
+}
+
+//写一函数判断一个数是否是素数(sqrt法)
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<math.h>
+int isPrime(int n)
+{
+	int i = 0;
+	for (i = 2; i <= sqrt(n); i++)
+	{
+		if (n%i == 0)
+			return -1;
+	}
+	return 0;
+}
+
+
+int main()
+{
+	int a = 0;
+	printf("请输入一个数:\n");
+	scanf("%d", &a);
+	int ret = isPrime(a);
+	if (ret == -1)
+		printf("%d不是素数\n", a);
+	else
+	{
+		printf("%d是素数\n", a);
+	}
+	return 0;
+}
+
+
+写一函数判断一个数是否是素数,并用该函数输出100-200间的素数
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int isPrime(int n)
+{
+	int i = 0;
+	for (i = 2; i < n; i++)
+	{
+		if (n%i == 0)
+			return -1;
+	}
+	return 0;
+
+}
+int main()
+{
+	int n = 0;
+	for (n = 100; n <= 200; n++)
+	{
+		isPrime(n);
+		int ret = isPrime(n);
+		if (ret == -1)
+			printf("%d不是素数\n",n);
+		else
+			printf("%d是素数\n",n);
+	}
+	return 0;
+}
+
+函数判断year是不是闰年
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int isLeapYear(int n)
+{
+	if (n % 4 == 0 && n % 100 != 0 || n % 400 == 0)
+	{
+		return 0;
+	}
+	return -1;
+}
+
+
+int main()
+{
+	int year = 0;
+	printf("请输入一个年份:\n");
+	scanf("%d", &year);
+	int ret = isLeapYear(year);
+	if (ret == 0)
+	{
+		printf("%d年是闰年\n", year);
+	}
+	else
+	{
+		printf("%d不是闰年\n", year);
+	}
+	return 0;
+}
+
+
+printf函数返回值类型(返回值是输出的字符数量，包括数字，字母，标点符号，空格等)
+/*#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int main()
+{
+	int A = 43;
+	printf("%d", printf("%d", printf("%d", A)));
+	return 0;
+}     */       //输出4321
+
+
+写一函数交换两个整数的内容(按址传参)
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int Swap(int* a, int* b)
+{
+	int t = *a;
+	*a = *b;
+	*b = t;
+}
+
+int main()
+{
+	int a = 10;
+	int b = 20;
+	Swap(&a, &b);
+	printf("%d %d\n", a, b);
+	return 0;
+}
+
+
+
+实现一个函数，打印乘法口诀表，口诀表的行数和列数自己指定.如：输入9，输出9 * 9口诀表，输出12，输出12 * 12的乘法口诀表。
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+void chart(int n)
+{
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j = 1; j <= i; j++)
+			printf("%d*%d=%2d\t ", i, j, i*j);
+	}
+	printf("\n ");
+}
+
+int main()
+{
+	int n = 0;
+	scanf("%d", &n);
+	chart(n);
+	return 0;
+}
