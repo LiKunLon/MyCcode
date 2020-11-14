@@ -1228,3 +1228,28 @@ int main()
 	printf("%d\n", sum);
 	return 0;
 }
+
+
+两个int（32位）整数m和n的二进制表达中，有多少个位(bit)不同
+输入例子:1999 2299     输出例子:7
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+int Differ(int x, int y)
+{
+	int a = x^y;//异或之后不同位上是1,相同位上为0
+	int count = 0;
+	while (a)
+	{
+		a = a&(a - 1);
+		count++;
+	}
+	return count;
+}
+int main()
+{
+	int x = 1999;
+	int y = 2299;
+	int ret = Differ(x, y);
+	printf("%d\n", ret);
+	return 0;
+}
