@@ -892,3 +892,297 @@ int main()
 	printf("%s\n", str);
 	return 0;
 }
+
+
+递归实现n的k次方
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int fac(int n , int k)
+{
+	
+	if (k == 0)
+		return 1;
+	else if (k>=1)
+	{
+		return n*fac(n, k - 1);
+	}
+}
+
+int main()
+{
+	int a = 0;
+	int b = 0;
+	printf("请输入两个整数作为底数和乘方:\n");
+	scanf("%d %d", &a, &b);
+	int ret = fac(a, b);
+	printf("%d\n", ret);
+	return 0;
+}
+
+
+写一个递归函数DigitSum(n)，输入一个非负整数，返回组成它的数字之和
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int DigitSum(int n)
+{
+	if (n == 0)
+	{
+		return 0;    
+	}
+	else
+	{
+		int k = n % 10;
+		return (k + DigitSum(n / 10));  
+	}
+	
+}
+int main()
+{
+	int num = 0;
+	printf("请输入一个整数:\n");
+	scanf("%d\n", &num);
+	printf("%d\n", DigitSum(num));
+	return 0;
+}
+
+递归实现斐波那契数列
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int fib(int n)
+{
+	if (n <= 2)
+		return 1;
+	else
+		return fib(n - 1) + fib(n - 2);
+}
+int main()
+{
+	int num = 0;
+	printf("请输入第几个斐波那契数:\n");
+	scanf("%d", &num);
+	printf("%d\n", fib(num));
+	return 0;
+}
+
+求第n个斐波那契数
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int main()
+{
+	int n = 0;
+	scanf("%d", &n);
+	int  fib( n);
+	{
+	    int f1 = 1;
+		int f2 = 1;
+		int f3 = 0;
+		for (int i = 3; i <= n; i++)
+		{
+			f3 = f1 + f2;
+			f1 = f2;
+			f2 = f3;
+		}
+		printf("%d\n", f3);
+	}
+}
+
+
+递归方式打印一个整数的每一位
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+void pri(int n)
+{
+	if (n > 9)
+	{
+		pri(n / 10);
+	}	
+	printf("%d ", n % 10);
+}
+
+int main()
+{
+	int num = 0;
+	scanf("%d", &num);
+	pri(num);
+	return 0;
+}
+
+
+冒泡排序
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+void bubbleSort(int arr[],int len)
+{
+	//i表示趟数
+	for (int i = 0; i <= len - 1; i++)
+	{
+		//j表示每趟中比较几次
+		for (int j = 0; j < len - 1 - i; j++)//len-1-i减少不必要比较次数
+		{
+			if (arr[j]>arr[j + 1])
+			{
+				int tmp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
+			}
+		}
+	}
+}
+void Show(int arr[], int len)
+{
+	for (int i = 0; i < len; i++)
+		printf("%d ", arr[i]);
+	printf("\n");
+}
+int main()
+{
+	int arr1[] = { 1, 5, 4, 65, 43, 87, 54 };
+	int len = sizeof(arr1) / sizeof(arr1[0]);
+	Show(arr1,len);
+	bubbleSort(arr1, len);
+	Show(arr1,len);
+	return 0;
+}
+
+
+将数组A中的内容和数组B中的内容进行交换。（数组一样大）
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int main()
+{
+	int i = 0;
+	int j = 0;
+	int arr1[] = { 1, 2, 3, 4, 5 };
+	int arr2[] = { 5, 4, 3, 2, 1 };
+	
+	for (; i <5; i++)
+	{
+		int tmp = arr1[i];
+		arr1[i] = arr2[i];
+		arr2[i] = tmp;
+	}
+	for (i = 0; i < 5; i++)
+		printf("%d ", arr1[i]);
+	printf("\n");
+	for (i = 0; i < 5; i++)
+		printf("%d ", arr2[i]);
+	printf("\n");
+	return 0;
+}
+
+②
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+void swap(int arr1[10], int arr2[10])
+{
+	for (int i = 0; i < 10; i++)
+	{
+		int tmp = arr1[i];
+		arr1[i] = arr2[i];
+		arr2[i] = tmp;
+	}
+}
+//void show(int arr1[10],int arr2[10])
+//{
+//	for (int i = 0; i < 10; i++)
+//	{
+//		printf("%d %d", arr1[i], arr2[i]);
+//	}
+//	printf("\n");
+//}
+
+int main()
+{
+	int arr1[10];
+	int arr2[10];
+	printf("请输入1数组的值:\n");
+	for (int i = 0; i < 10; ++i)
+	{
+		int num;
+		scanf("%d", &num);
+		 arr1[i] = num;
+	}
+	printf("请输入2数组的值:\n");
+	for (int i = 0; i < 10; ++i)
+	{
+		int num;
+		scanf("%d", &num);
+		arr2[i] = num;
+	}
+	void swap(arr1,arr2);
+
+	printf("交换后1数组的值:\n");
+	for (int i = 0; i < 10; i++)
+	{
+		printf("%d\t", arr1[i]);
+	}
+	printf("交换后2数组的值:\n");
+	for (int i = 0; i < 10; i++)
+	{
+		printf("%d\t", arr2[i]);
+	}
+	return 0;
+}
+
+
+创建一个整形数组1.实现函数init() 初始化数组为全0 
+2.实现print()  打印数组的每个元素  
+3.实现reverse()  函数完成数组元素的逆置。
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+void init(int arr[],int len)
+{
+	//初始化数组1-10
+	for (int i = 0; i < len ; i++)
+	{
+		arr[i] = i+1;
+	}
+}
+void pri(int arr[],int len)
+{
+	//打印数组每个元素
+	for (int i = 0; i < len; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+}
+void ling(int arr[], int len)
+{
+	//重新初始化数组为全0
+	int i = 0;
+	for (int i = 0; i < len; i++)
+	{
+		arr[i] = 0;
+	}
+	printf("%d ", arr[i]);
+	printf("\n");
+}
+void reverse(int arr[], int len)
+{
+	//数组元素逆置
+	int left = 0;
+	int right = len - 1;
+	while (left < right)
+	{
+		int tmp = arr[left];
+		arr[left] = arr[right];
+		arr[right] = tmp;
+		left++;
+		right--;
+	}
+}
+
+
+int main()
+{
+	int arr[10] = { 0 };
+	int len = sizeof(arr) / sizeof(arr[0]);
+	init(arr,len);
+	pri(arr, len);
+	reverse(arr, len);
+	pri(arr, len);
+	ling(arr, len);
+	return 0;
+}
