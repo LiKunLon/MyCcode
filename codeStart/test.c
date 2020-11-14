@@ -1207,3 +1207,24 @@ int main()
 	pri(arr, len);
 	return 0;
 }
+
+
+求Sn=a+aa+aaa+aaaa+aaaaa的前5项之和，其中a是一个数字，
+例如：2 + 22 + 222 + 2222 + 22222
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int main()
+{
+	int a = 0;
+	int n = 0;
+	int sum = 0;
+	int tmp = 0;
+	scanf("%d %d", &a, &n);
+	for (int i = 0; i < n; i++)
+	{
+		tmp = tmp * 10 + a;
+		sum += tmp;
+	}
+	printf("%d\n", sum);
+	return 0;
+}
