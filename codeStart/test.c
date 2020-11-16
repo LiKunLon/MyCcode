@@ -1324,3 +1324,20 @@ int main()
 }
 
 
+给定一个数组{1,2,3,2,1},找到出现一次的数字
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+int main()
+{
+	int a = 0;
+	int arr[5] = { 1, 2, 3, 2, 1 };
+	for (int i = 0; i < 5; i++)
+	{
+		a = a ^ arr[i];	
+	}
+	printf("%d\n", a);
+	return 0;
+}
+
+
+
