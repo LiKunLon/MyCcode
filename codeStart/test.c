@@ -1406,3 +1406,42 @@ int main()
 	printf("%s\n", str1);
 	return 0;
 }
+
+水仙花数(0-100000)
+“水仙花数”是指一个n位数，其各位数字的n次方之和确好等于该数本身，如:153＝1^3＋5^3＋3^3，则153是一个“水仙花数”。
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<math.h>
+#include<windows.h>
+void Flower()
+{
+	for (int i = 10; i <= 100000; i++)
+	{
+		int n = i;
+		int num = 0;
+		int sum = 0;
+		while (n)//求这是个几位数
+		{
+			n = n / 10;
+			num++;//确定次方数
+		}
+		n = i;
+		while (n)
+		{
+			//pow(n,m)表示n的m次方;
+			sum = sum + (int)pow(n % 10, num);//每次n%10得到的是最后一位数字;
+			n = n / 10;
+		}
+		if (sum == i)
+		{
+			printf("%d\n", i);
+		}
+	}
+}
+
+int main()
+{
+	Flower();
+	system("pause");
+	return 0;
+}
