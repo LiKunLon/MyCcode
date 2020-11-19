@@ -1445,3 +1445,15 @@ int main()
 	system("pause");
 	return 0;
 }
+
+
+#include <stdio.h>
+int main()
+{
+	//int *p = NULL;
+	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+	printf("%d", arr);
+	printf("\n");
+	printf("%d", &arr+1);
+	return 0;
+}
