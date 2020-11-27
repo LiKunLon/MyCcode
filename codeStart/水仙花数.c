@@ -1,3 +1,6 @@
+水仙花数(0-100000)
+“水仙花数”是指一个n位数，其各位数字的n次方之和确好等于该数本身，如:153＝1^3＋5^3＋3^3，则153是一个“水仙花数”
+
 #pragma warning(disable:4996)
 #include<stdio.h>
 #include<math.h>
