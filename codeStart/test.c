@@ -1476,3 +1476,66 @@ int main()
 	return 0;
 }
 
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+void menu()
+{
+	printf("**********猜数字*********\n");
+	printf("*************************\n");
+	printf("**********1.play*********\n");
+	printf("**********2.quit*********\n");
+	printf("*************************\n");
+
+}
+void game()
+{
+	srand((unsigned)time(NULL));
+	int ret = rand() % 100 + 1;
+	while (1)
+	{
+		int guess;
+		printf("输入你猜的数字:\n");
+		scanf("%d", &guess);
+		if (ret > guess)
+		{
+			printf("猜小了!\n");
+		}
+		else if (ret < guess)
+		{
+			printf("猜大了!\n");
+		}
+		else
+		{
+			printf("恭喜这个b!\n");
+			break;
+		}
+	}
+}
+int main()
+{
+	int quit = 0;
+	while (!quit)
+	{
+		menu();
+		int input;
+		printf("请输入你的操作->\n");
+		scanf("%d", &input);
+		switch (input)
+		{
+		case 1:
+			game();
+			printf("再来一把?\n");
+			break;
+		case 2:
+			quit = 1;
+			printf("退出游戏!\n");
+			break;
+		default:
+			printf("你的输入有误!\n");
+			break;
+		}
+	}
+}
+
